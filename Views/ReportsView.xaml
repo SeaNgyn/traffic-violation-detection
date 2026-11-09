@@ -1,0 +1,569 @@
+﻿<Page x:Class="TrafficViolationDetection.Views.ReportsView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Background="#F4F7FB">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                  HorizontalScrollBarVisibility="Disabled">
+
+        <StackPanel Margin="28">
+
+            <!-- ===================================================== -->
+            <!-- PAGE HEADER                                           -->
+            <!-- ===================================================== -->
+
+            <StackPanel Margin="0,0,0,20">
+
+                <TextBlock Text="Reports"
+                           FontSize="20"
+                           FontWeight="SemiBold"
+                           Foreground="#172B4D"/>
+
+                <TextBlock Text="Analyze traffic violations and export detection data"
+                           FontSize="13"
+                           Foreground="#6B7C93"
+                           Margin="0,5,0,0"/>
+
+            </StackPanel>
+
+
+            <!-- ===================================================== -->
+            <!-- FILTERS                                               -->
+            <!-- ===================================================== -->
+
+            <Border Background="White"
+                    BorderBrush="#E4EAF0"
+                    BorderThickness="1"
+                    CornerRadius="10"
+                    Padding="20"
+                    Margin="0,0,0,18">
+
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="18"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="18"/>
+                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <!-- FROM -->
+
+                    <StackPanel Grid.Column="0">
+
+                        <TextBlock Text="From"
+                                   FontSize="11"
+                                   FontWeight="SemiBold"
+                                   Foreground="#6B7C93"
+                                   Margin="0,0,0,6"/>
+
+                        <DatePicker Width="160"
+                                    Height="36"/>
+
+                    </StackPanel>
+
+
+                    <!-- TO -->
+
+                    <StackPanel Grid.Column="2">
+
+                        <TextBlock Text="To"
+                                   FontSize="11"
+                                   FontWeight="SemiBold"
+                                   Foreground="#6B7C93"
+                                   Margin="0,0,0,6"/>
+
+                        <DatePicker Width="160"
+                                    Height="36"/>
+
+                    </StackPanel>
+
+
+                    <!-- VIOLATION TYPE -->
+
+                    <StackPanel Grid.Column="4">
+
+                        <TextBlock Text="Violation Type"
+                                   FontSize="11"
+                                   FontWeight="SemiBold"
+                                   Foreground="#6B7C93"
+                                   Margin="0,0,0,6"/>
+
+                        <ComboBox Height="36"
+                                  Padding="8,3">
+
+                            <ComboBoxItem Content="All violation types"
+                                          IsSelected="True"/>
+
+                            <ComboBoxItem Content="No Helmet"/>
+
+                            <ComboBoxItem Content="Red Light Violation"/>
+
+                            <ComboBoxItem Content="Wrong Lane"/>
+
+                        </ComboBox>
+
+                    </StackPanel>
+
+
+                    <!-- GENERATE -->
+
+                    <Button Grid.Column="6"
+                            Content="Generate Report"
+                            Style="{StaticResource PrimaryButton}"
+                            Height="38"
+                            MinWidth="140"
+                            Padding="18,0"
+                            VerticalAlignment="Bottom"
+                            Cursor="Hand"/>
+
+                </Grid>
+
+            </Border>
+
+
+            <!-- ===================================================== -->
+            <!-- SUMMARY CARDS                                         -->
+            <!-- ===================================================== -->
+
+            <UniformGrid Columns="4"
+                         Margin="0,0,0,18">
+
+                <!-- Total detections -->
+
+                <Border Background="White"
+                        BorderBrush="#E4EAF0"
+                        BorderThickness="1"
+                        CornerRadius="10"
+                        Padding="18"
+                        Margin="0,0,12,0">
+
+                    <StackPanel>
+
+                        <TextBlock Text="TOTAL DETECTIONS"
+                                   Foreground="#7A8CA2"
+                                   FontSize="10"
+                                   FontWeight="SemiBold"/>
+
+                        <TextBlock Text="1"
+                                   FontSize="27"
+                                   FontWeight="Bold"
+                                   Foreground="#172B4D"
+                                   Margin="0,7,0,2"/>
+
+                        <TextBlock Text="Objects processed"
+                                   Foreground="#8A99AA"
+                                   FontSize="11"/>
+
+                    </StackPanel>
+
+                </Border>
+
+
+                <!-- Violations -->
+
+                <Border Background="White"
+                        BorderBrush="#E4EAF0"
+                        BorderThickness="1"
+                        CornerRadius="10"
+                        Padding="18"
+                        Margin="0,0,12,0">
+
+                    <StackPanel>
+
+                        <TextBlock Text="VIOLATIONS"
+                                   Foreground="#7A8CA2"
+                                   FontSize="10"
+                                   FontWeight="SemiBold"/>
+
+                        <TextBlock Text="1"
+                                   FontSize="27"
+                                   FontWeight="Bold"
+                                   Foreground="#E04F5F"
+                                   Margin="0,7,0,2"/>
+
+                        <TextBlock Text="Violations detected"
+                                   Foreground="#8A99AA"
+                                   FontSize="11"/>
+
+                    </StackPanel>
+
+                </Border>
+
+
+                <!-- Average confidence -->
+
+                <Border Background="White"
+                        BorderBrush="#E4EAF0"
+                        BorderThickness="1"
+                        CornerRadius="10"
+                        Padding="18"
+                        Margin="0,0,12,0">
+
+                    <StackPanel>
+
+                        <TextBlock Text="AVG. CONFIDENCE"
+                                   Foreground="#7A8CA2"
+                                   FontSize="10"
+                                   FontWeight="SemiBold"/>
+
+                        <TextBlock Text="95%"
+                                   FontSize="27"
+                                   FontWeight="Bold"
+                                   Foreground="#2FA875"
+                                   Margin="0,7,0,2"/>
+
+                        <TextBlock Text="Detection accuracy"
+                                   Foreground="#8A99AA"
+                                   FontSize="11"/>
+
+                    </StackPanel>
+
+                </Border>
+
+
+                <!-- Top violation -->
+
+                <Border Background="White"
+                        BorderBrush="#E4EAF0"
+                        BorderThickness="1"
+                        CornerRadius="10"
+                        Padding="18">
+
+                    <StackPanel>
+
+                        <TextBlock Text="TOP VIOLATION"
+                                   Foreground="#7A8CA2"
+                                   FontSize="10"
+                                   FontWeight="SemiBold"/>
+
+                        <TextBlock Text="No Helmet"
+                                   FontSize="20"
+                                   FontWeight="SemiBold"
+                                   Foreground="#172B4D"
+                                   Margin="0,10,0,3"/>
+
+                        <TextBlock Text="Most detected type"
+                                   Foreground="#8A99AA"
+                                   FontSize="11"/>
+
+                    </StackPanel>
+
+                </Border>
+
+            </UniformGrid>
+
+
+            <!-- ===================================================== -->
+            <!-- ANALYTICS                                             -->
+            <!-- ===================================================== -->
+
+            <Grid Margin="0,0,0,18">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="18"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+
+                <!-- ================================================= -->
+                <!-- CHART                                             -->
+                <!-- ================================================= -->
+
+                <Border Grid.Column="0"
+                        Background="White"
+                        BorderBrush="#E4EAF0"
+                        BorderThickness="1"
+                        CornerRadius="10"
+                        Padding="20"
+                        Height="350">
+
+                    <Grid>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+
+                        <!-- Chart Header -->
+
+                        <Grid Margin="0,0,0,16">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel>
+
+                                <TextBlock Text="Violations Over Time"
+                                           FontSize="16"
+                                           FontWeight="SemiBold"
+                                           Foreground="#172B4D"/>
+
+                                <TextBlock Text="Traffic violations detected within the selected period"
+                                           FontSize="11"
+                                           Foreground="#8A99AA"
+                                           Margin="0,4,0,0"/>
+
+                            </StackPanel>
+
+
+                            <!-- Legend -->
+
+                            <StackPanel Grid.Column="1"
+                                        Orientation="Horizontal"
+                                        VerticalAlignment="Center">
+
+                                <Ellipse Width="8"
+                                         Height="8"
+                                         Fill="#1F70C1"
+                                         VerticalAlignment="Center"/>
+
+                                <TextBlock Text="Violations"
+                                           FontSize="11"
+                                           Foreground="#6B7C93"
+                                           Margin="6,0,0,0"/>
+
+                            </StackPanel>
+
+                        </Grid>
+
+
+                        <!-- Chart Area -->
+
+                        <Border Grid.Row="1"
+                                Background="#F8FAFC"
+                                BorderBrush="#EDF1F5"
+                                BorderThickness="1"
+                                CornerRadius="8">
+
+                            <Grid>
+
+                                <!-- Placeholder until chart library is connected -->
+
+                                <StackPanel HorizontalAlignment="Center"
+                                            VerticalAlignment="Center">
+
+                                    <TextBlock Text="Chart"
+                                               FontSize="14"
+                                               FontWeight="SemiBold"
+                                               Foreground="#7A8CA2"
+                                               HorizontalAlignment="Center"/>
+
+                                    <TextBlock Text="Report data will be visualized here"
+                                               FontSize="11"
+                                               Foreground="#A0ADBA"
+                                               Margin="0,5,0,0"
+                                               HorizontalAlignment="Center"/>
+
+                                </StackPanel>
+
+                            </Grid>
+
+                        </Border>
+
+                    </Grid>
+
+                </Border>
+
+
+                <!-- ================================================= -->
+                <!-- REPORT SUMMARY                                    -->
+                <!-- ================================================= -->
+
+                <Border Grid.Column="2"
+                        Background="White"
+                        BorderBrush="#E4EAF0"
+                        BorderThickness="1"
+                        CornerRadius="10"
+                        Padding="20"
+                        Height="350">
+
+                    <Grid>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+
+                        <!-- Header -->
+
+                        <StackPanel>
+
+                            <TextBlock Text="Report Summary"
+                                       FontSize="16"
+                                       FontWeight="SemiBold"
+                                       Foreground="#172B4D"/>
+
+                            <TextBlock Text="Overview of the selected period"
+                                       FontSize="11"
+                                       Foreground="#8A99AA"
+                                       Margin="0,4,0,0"/>
+
+                        </StackPanel>
+
+
+                        <!-- Details -->
+
+                        <StackPanel Grid.Row="1"
+                                    Margin="0,22,0,0">
+
+
+                            <Grid Margin="0,0,0,14">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Text="Total detections"
+                                           Foreground="#6B7C93"
+                                           FontSize="12"/>
+
+                                <TextBlock Grid.Column="1"
+                                           Text="1"
+                                           FontWeight="SemiBold"
+                                           Foreground="#172B4D"/>
+
+                            </Grid>
+
+
+                            <Grid Margin="0,0,0,14">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Text="Violations"
+                                           Foreground="#6B7C93"
+                                           FontSize="12"/>
+
+                                <TextBlock Grid.Column="1"
+                                           Text="1"
+                                           FontWeight="SemiBold"
+                                           Foreground="#E04F5F"/>
+
+                            </Grid>
+
+
+                            <Grid Margin="0,0,0,14">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Text="Top violation"
+                                           Foreground="#6B7C93"
+                                           FontSize="12"/>
+
+                                <TextBlock Grid.Column="1"
+                                           Text="No Helmet"
+                                           FontWeight="SemiBold"
+                                           Foreground="#172B4D"/>
+
+                            </Grid>
+
+
+                            <Grid>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Text="Avg. confidence"
+                                           Foreground="#6B7C93"
+                                           FontSize="12"/>
+
+                                <TextBlock Grid.Column="1"
+                                           Text="95%"
+                                           FontWeight="SemiBold"
+                                           Foreground="#2FA875"/>
+
+                            </Grid>
+
+                        </StackPanel>
+
+
+                        <!-- Export -->
+
+                        <Button Grid.Row="2"
+                                Content="Export CSV"
+                                Height="38"
+                                Style="{StaticResource PrimaryButton}"
+                                FontWeight="SemiBold"
+                                Cursor="Hand"/>
+
+                    </Grid>
+
+                </Border>
+
+            </Grid>
+
+
+            <!-- ===================================================== -->
+            <!-- REPORT INFORMATION                                    -->
+            <!-- ===================================================== -->
+
+            <Border Background="#EEF5FC"
+                    BorderBrush="#D5E5F5"
+                    BorderThickness="1"
+                    CornerRadius="8"
+                    Padding="14">
+
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Border Width="28"
+                            Height="28"
+                            Background="#DDECF9"
+                            CornerRadius="14">
+
+                        <TextBlock Text="i"
+                                   Foreground="#1F70C1"
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+
+                    </Border>
+
+                    <StackPanel Grid.Column="1"
+                                Margin="10,0,0,0">
+
+                        <TextBlock Text="Report information"
+                                   Foreground="#315E85"
+                                   FontSize="12"
+                                   FontWeight="SemiBold"/>
+
+                        <TextBlock Text="Use the filters above to generate a report for a specific date range and violation type."
+                                   Foreground="#587A98"
+                                   FontSize="11"
+                                   Margin="0,3,0,0"
+                                   TextWrapping="Wrap"/>
+
+                    </StackPanel>
+
+                </Grid>
+
+            </Border>
+
+        </StackPanel>
+
+    </ScrollViewer>
+
+</Page>

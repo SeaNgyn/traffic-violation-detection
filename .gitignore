@@ -1,0 +1,59 @@
+# Build
+bin/
+obj/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.cache
+
+# Rider / VS Code
+.idea/
+.vscode/
+
+# Logs
+*.log
+
+# NuGet
+packages/
+
+# Publish
+publish/
+publishProfiles/
+
+# EF Core local database
+*.mdf
+*.ldf
+
+# SQLite
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+
+# Secrets
+appsettings.Development.json
+appsettings.Local.json
+appsettings.Secret.json
+secrets.json
+
+# Certificates
+*.pfx
+*.p12
+*.key
+*.pem
+
+# Environment variables
+.env
+.env.*
+
+# Temporary files
+temp/
+tmp/
+Temp/
+Tmp/
+
+# Windows
+Thumbs.db
+Desktop.ini
